@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLens - The Failed Fix Became the Most Useful Data</title>
+    <meta name="description" content="An in-depth look into DevLens, an AI-powered Android performance investigator.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Marked.js for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="glass-background"></div>
+    <div class="glow-effect"></div>
+
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">🔍</span>
+                <span class="logo-text">DevLens</span>
+            </div>
+            <div class="nav-links">
+                <a href="#article-content" class="nav-link active">Article</a>
+                <a href="https://github.com/Charan-8888/DevLens" target="_blank" class="nav-link btn-primary">View Project on GitHub</a>
+            </div>
+        </div>
+        <div class="progress-bar" id="progressBar"></div>
+    </header>
+
+    <main class="layout-container">
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <h3>Table of Contents</h3>
+                <nav id="toc" class="toc-nav">
+                    <!-- TOC injected by JS -->
+                </nav>
+            </div>
+        </aside>
+
+        <article class="content-wrapper" id="article-wrapper">
+            <div id="loading" class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading DevLens Investigation...</p>
+            </div>
+            <div id="article-content" class="markdown-body" style="display: none;">
+                <!-- Content injected by JS -->
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Built for the iQOO Hackathon &mdash; DevLens Prototype</p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

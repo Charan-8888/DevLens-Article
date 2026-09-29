@@ -10,8 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         progressBar.style.width = scrolled + "%";
-        
-        updateActiveToc();
     });
 
     // Configure Marked to include IDs in headings for TOC linking
@@ -46,9 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // Render markdown to HTML
             const html = marked.parse(markdown);
             articleContainer.innerHTML = html;
-            
-            // Generate TOC
-            generateTOC();
 
             // Hide loading, show content
             loadingState.style.display = 'none';
@@ -59,56 +54,4 @@ document.addEventListener("DOMContentLoaded", () => {
             loadingState.innerHTML = `<p style="color: #ef4444;">Error loading the article. Ensure 'artical.md' is in the same directory.</p>`;
         });
 
-    function generateTOC() {
-        const headings = articleContainer.querySelectorAll("h1, h2, h3");
-        if (headings.length === 0) return;
-
-        let tocHTML = '';
-        headings.forEach(heading => {
-            const level = heading.tagName.toLowerCase();
-            const id = heading.id;
-            const text = heading.innerText;
-            tocHTML += `<a href="#${id}" class="toc-link toc-${level}" data-target="${id}">${text}</a>`;
-        });
-        
-        tocContainer.innerHTML = tocHTML;
-        
-        // Add click listeners to TOC items
-        const tocLinks = document.querySelectorAll('.toc-link');
-        tocLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('data-target');
-                const targetEl = document.getElementById(targetId);
-                if (targetEl) {
-                    window.scrollTo({
-                        top: targetEl.offsetTop - 80, // Offset for navbar
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }
-
-    function updateActiveToc() {
-        const headings = Array.from(articleContainer.querySelectorAll("h1, h2, h3"));
-        if (!headings.length) return;
-
-        let currentActive = headings[0].id;
-        const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-
-        headings.forEach(heading => {
-            if (heading.offsetTop - 100 <= scrollPosition) {
-                currentActive = heading.id;
-            }
-        });
-
-        const tocLinks = document.querySelectorAll('.toc-link');
-        tocLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-target') === currentActive) {
-                link.classList.add('active');
-            }
-        });
-    }
 });
